@@ -1,14 +1,38 @@
 # How to deploy to Azure Kubernetes (AKS) a SpringBoot WebAPI
 
-See this repo for creating the Docker image and Kubernetes manifest files: 
+**IMPORTANT NOTE**: see this repo for creating the Docker image (**DockerFile**) and Kubernetes manifest files (**deployment.yml** and **service.yml**): 
 
 https://github.com/luiscoco/SpringBoot_Sample4-Deploy-WebAPI-to-LocalKubernetes
 
-## 1.
+## 1. Prerequisites
 
+Install **kubectl** command in Windows: https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/
 
+Download and Install **Docker Desktop**: https://docs.docker.com/desktop/install/windows-install/
 
-## 2. 
+Install **Azure CLI**: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows
+
+## 2. Create Azure Container Registry (ACR)
+
+### 2.1. Login in to Azure:
+
+```
+az login
+```
+
+### 2.2. Create a ResourceGroup:
+
+```
+az group create --name myRG --location westeurope
+```
+
+### 2.3. Create an ACR instance (**Note**: only use **lowercase letters** for the ACR name):
+
+```
+az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --location westeurope
+```
+
+### 2.4. Set the **Admin user** in the ACR and copy the username and password:
 
 
 
