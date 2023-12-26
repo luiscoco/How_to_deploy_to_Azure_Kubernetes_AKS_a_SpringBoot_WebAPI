@@ -84,18 +84,44 @@ az ad sp list --display-name luis-service-principal-name --query "[].appId" --ou
 
 **ApplicationID**: 70566a6a-4ba8-4b63-9f6e-3979467545c6
 
-## 6. Login in Azure Container Registry ACR with this command
+## 6. Create Azure Container Registy ACR
+
+```
+az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --location westeurope
+```
+
+## 7. Login in Azure Container Registry ACR with this command
+
+```
+az acr login --name myregistryluiscoco1974
+```
 
 ```
 docker login myregistryluiscoco1974.azurecr.io -u ApplicationID -p SecretValue
 ```
 
-## 7. Push the Docker image to Azure ACR
+```
+docker build -t myregistryluiscoco1974.azurecr.io/mywebapi:v1 .
+```
+
+## 8. Push the Docker image to Azure ACR
 
 
 
+## 9. Create a new Azure Kubernetes Cluster AKS
 
-## 8. Deploy the docker image stored in ACR to Azure AKS
+
+
+```
+az aks create --resource-group myRG --name myAKSClusterluiscoco1974 --node-count 1 --enable-addons monitoring --generate-ssh-keys
+```
+
+Connect to Azure Kubernetes Cluster
+```
+az aks get-credentials --resource-group myRG --name myAKSClusterluiscoco1974
+```
+
+## 10. Deploy the docker image stored in ACR to Azure AKS
 
 
 
