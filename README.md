@@ -181,8 +181,6 @@ cd path/to/your/project
 az acr login --name myregistryluiscoco1974
 ```
 
-![image](https://github.com/luiscoco/Azure_AKS_Deploy_.NET_7_Web_API/assets/32194879/9cf9cb0d-2d98-40d4-be6c-17aed5b4e0db)
-
 **NOTE**: if you cannot enter with this command run again "az login" and try again running the command "az acr login --name myregistryluiscoco1974" 
 
 ### 3.3. Build your Docker image:
@@ -191,15 +189,11 @@ az acr login --name myregistryluiscoco1974
 docker build -t myregistryluiscoco1974.azurecr.io/mywebapi:v1 .
 ```
 
-![image](https://github.com/luiscoco/Azure_AKS_Deploy_.NET_7_Web_API/assets/32194879/fc101461-c21f-4e26-8ff4-94f71b9a36f4)
-
 ### 3.4. Push the Image to ACR:
 
 ```
 docker push myregistryluiscoco1974.azurecr.io/mywebapi:v1
 ```
-
-![image](https://github.com/luiscoco/Azure_AKS_Deploy_.NET_7_Web_API/assets/32194879/2255b4e1-47ba-4666-91d9-40c32ffb2348)
 
 ## 4. Create Azure Kubernetes AKS Cluster
 
