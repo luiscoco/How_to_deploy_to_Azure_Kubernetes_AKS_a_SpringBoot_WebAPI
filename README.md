@@ -1,6 +1,6 @@
 # How to deploy SpringBoot WebAPI to Azure Kubernetes(AKS)
 
-## 1. Create the SpringBoo WebAPI with VSCode
+## 1. Create the SpringBoot WebAPI with VSCode
 
 
 
