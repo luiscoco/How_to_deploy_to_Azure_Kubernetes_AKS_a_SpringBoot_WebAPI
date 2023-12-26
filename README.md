@@ -106,11 +106,11 @@ docker build -t myregistryluiscoco1974.azurecr.io/mywebapi:v1 .
 
 ## 8. Push the Docker image to Azure ACR
 
-
+```
+docker push myregistryluiscoco1974.azurecr.io/mywebapi:v1
+```
 
 ## 9. Create a new Azure Kubernetes Cluster AKS
-
-
 
 ```
 az aks create --resource-group myRG --name myAKSClusterluiscoco1974 --node-count 1 --enable-addons monitoring --generate-ssh-keys
