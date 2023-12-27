@@ -82,7 +82,7 @@ az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --
 
 Set as ACR Admin User
 
-
+![image](https://github.com/luiscoco/SpringBoot_Sample5-deploy-WebAPI-to-Azure_Kubernetes_AKS/assets/32194879/1b7ee990-9b1f-4c4d-9a7d-bc2cdbb50422)
 
 ## 6. Create Service-Principal
 
