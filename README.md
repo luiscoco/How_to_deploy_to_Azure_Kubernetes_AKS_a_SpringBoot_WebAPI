@@ -68,7 +68,13 @@ spec:
       targetPort: 8080  # The port the container accepts traffic on
 ```
 
-## 4. Create Service-Principal
+## 4. Create Azure Container Registy ACR
+
+```
+az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --location westeurope
+```
+
+## 5. Create Service-Principal
 
 ```
 az ad sp create-for-rbac --name luis-service-principal-name ^
@@ -78,21 +84,15 @@ az ad sp create-for-rbac --name luis-service-principal-name ^
     --output tsv
 ```
 
-**SecretValue**: bKB8Q~Zs2bho7SUQy1G4Qhhq7cOf7Sdgti-nwckf
+**SecretValue**: 
 
-## 5. Get the ApplicationID
+## 6. Get the ApplicationID
 
 ```
 az ad sp list --display-name luis-service-principal-name --query "[].appId" --output tsv
 ```
 
-**ApplicationID**: 70566a6a-4ba8-4b63-9f6e-3979467545c6
-
-## 6. Create Azure Container Registy ACR
-
-```
-az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --location westeurope
-```
+**ApplicationID**: 
 
 ## 7. Login in Azure Container Registry ACR with this command
 
