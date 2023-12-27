@@ -68,13 +68,19 @@ spec:
       targetPort: 8080  # The port the container accepts traffic on
 ```
 
-## 4. Create Azure Container Registy ACR
+## 4. Set Azure Subscription
+
+```
+az account set --subscription "XXXXXXXXXXXXXXXXXXXXXXXX"
+```
+
+## 5. Create Azure Container Registy ACR
 
 ```
 az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --location westeurope
 ```
 
-## 5. Create Service-Principal
+## 6. Create Service-Principal
 
 ```
 az ad sp create-for-rbac --name luis-service-principal-name ^
@@ -86,7 +92,7 @@ az ad sp create-for-rbac --name luis-service-principal-name ^
 
 **SecretValue**: 
 
-## 6. Get the ApplicationID
+## 7. Get the ApplicationID
 
 ```
 az ad sp list --display-name luis-service-principal-name --query "[].appId" --output tsv
@@ -94,7 +100,7 @@ az ad sp list --display-name luis-service-principal-name --query "[].appId" --ou
 
 **ApplicationID**: 
 
-## 7. Login in Azure Container Registry ACR with this command
+## 8. Login in Azure Container Registry ACR with this command
 
 ```
 az acr login --name myregistryluiscoco1974
@@ -108,13 +114,13 @@ docker login myregistryluiscoco1974.azurecr.io -u ApplicationID -p SecretValue
 docker build -t myregistryluiscoco1974.azurecr.io/mywebapi:v1 .
 ```
 
-## 8. Push the Docker image to Azure ACR
+## 9. Push the Docker image to Azure ACR
 
 ```
 docker push myregistryluiscoco1974.azurecr.io/mywebapi:v1
 ```
 
-## 9. Create a new Azure Kubernetes Cluster AKS
+## 10. Create a new Azure Kubernetes Cluster AKS
 
 ```
 az aks create --resource-group myRG --name myAKSClusterluiscoco1974 --node-count 1 --enable-addons monitoring --generate-ssh-keys
@@ -125,7 +131,7 @@ Connect to Azure Kubernetes Cluster
 az aks get-credentials --resource-group myRG --name myAKSClusterluiscoco1974
 ```
 
-## 10. Deploy the docker image stored in ACR to Azure AKS
+## 11. Deploy the docker image stored in ACR to Azure AKS
 
 ```
 kubectl apply -f deployment.yml
