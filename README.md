@@ -84,13 +84,13 @@ az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --
 
 ```
 az ad sp create-for-rbac --name luis-service-principal-name ^
-    --scopes /subscriptions/1d640b19-d6ae-466b-a0bd-d80869b565b8/resourceGroups/myRG/providers/Microsoft.ContainerRegistry/registries/myregistryluiscoco1974 ^
+    --scopes /subscriptions/99888cc6-c635-4ebd-b0ac-1be1dace0089/resourceGroups/myRG/providers/Microsoft.ContainerRegistry/registries/myregistryluiscoco1974 ^
     --role acrpull ^
     --query "password" ^
     --output tsv
 ```
 
-**SecretValue**: 
+**SecretValue**:aCD8Q~C2-.bwoCJV8Ibx1YwwKhf~9S3FBAOZxaY.
 
 ## 7. Get the ApplicationID
 
@@ -98,7 +98,7 @@ az ad sp create-for-rbac --name luis-service-principal-name ^
 az ad sp list --display-name luis-service-principal-name --query "[].appId" --output tsv
 ```
 
-**ApplicationID**: 
+**ApplicationID**:70566a6a-4ba8-4b63-9f6e-3979467545c6
 
 ## 8. Login in Azure Container Registry ACR with this command
 
@@ -107,7 +107,7 @@ az acr login --name myregistryluiscoco1974
 ```
 
 ```
-docker login myregistryluiscoco1974.azurecr.io -u ApplicationID -p SecretValue
+docker login myregistryluiscoco1974.azurecr.io -u 70566a6a-4ba8-4b63-9f6e-3979467545c6 -p aCD8Q~C2-.bwoCJV8Ibx1YwwKhf~9S3FBAOZxaY.
 ```
 
 ```
@@ -119,6 +119,16 @@ docker build -t myregistryluiscoco1974.azurecr.io/mywebapi:v1 .
 ```
 docker push myregistryluiscoco1974.azurecr.io/mywebapi:v1
 ```
+
+## 10. 
+
+az login
+
+az role assignment create --assignee 70566a6a-4ba8-4b63-9f6e-3979467545c6 --role Contributor --scope /subscriptions/99888cc6-c635-4ebd-b0ac-1be1dace0089/resourceGroups/myRG/providers/Microsoft.ContainerRegistry/registries/myregistryluiscoco1974
+
+Also do not forget to Set the Admin user in the Azure Container Registry ACR
+
+![image](https://github.com/luiscoco/SpringBoot_Sample5-deploy-WebAPI-to-Azure_Kubernetes_AKS/assets/32194879/aba0d89a-a34b-4f46-9aaa-983bda3ccd0d)
 
 ## 10. Create a new Azure Kubernetes Cluster AKS
 
