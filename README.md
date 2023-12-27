@@ -80,6 +80,10 @@ az account set --subscription "XXXXXXXXXXXXXXXXXXXXXXXX"
 az acr create --resource-group myRG --name myregistryluiscoco1974 --sku Basic --location westeurope
 ```
 
+Set as ACR Admin User
+
+
+
 ## 6. Create Service-Principal
 
 ```
