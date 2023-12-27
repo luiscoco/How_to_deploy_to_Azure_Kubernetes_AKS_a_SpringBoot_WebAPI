@@ -71,7 +71,11 @@ spec:
 ## 4. Create Service-Principal
 
 ```
-az ad sp create-for-rbac --name luis-service-principal-name --scopes /subscriptions/1d640b19-d6ae-466b-a0bd-d80869b565b8/resourceGroups/myRG/providers/Microsoft.ContainerRegistry/registries/myregistryluiscoco1974 --role acrpull --query "password" --output tsv
+az ad sp create-for-rbac --name luis-service-principal-name ^
+    --scopes /subscriptions/1d640b19-d6ae-466b-a0bd-d80869b565b8/resourceGroups/myRG/providers/Microsoft.ContainerRegistry/registries/myregistryluiscoco1974 ^
+    --role acrpull ^
+    --query "password" ^
+    --output tsv
 ```
 
 **SecretValue**: bKB8Q~Zs2bho7SUQy1G4Qhhq7cOf7Sdgti-nwckf
