@@ -153,9 +153,26 @@ docker login myregistryluiscoco1974.azurecr.io -u myregistryluiscoco1974 -p m+QY
 Replace <username> and <password> with the credentials from the previous step.
 
 
+## 8. Push the Docker image to Azure Container Registry ACR
 
+```
+docker push myregistryluiscoco1974.azurecr.io/springbootapi:latest
+```
 
-## 8. Create Service-Principal
+This is the output we obtain:
+
+```
+PS C:\SpringBoot WebAPI> docker push myregistryluiscoco1974.azurecr.io/springbootapi:latest
+The push refers to repository [myregistryluiscoco1974.azurecr.io/springbootapi]
+632870e20190: Pushed
+eb6ee5b9581f: Pushed
+e3abdc2e9252: Pushed
+eafe6e032dbd: Pushed
+92a4e8a3140f: Pushed
+latest: digest: sha256:bbc1283153d8ab75f0521d4bff7b23a5e4d03feb5296ce703e097fcaa45952c6 size: 1372
+```
+
+## 9. Create Service-Principal
 
 ```
 az ad sp create-for-rbac --name luis-service-principal-name ^
