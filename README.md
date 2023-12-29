@@ -146,6 +146,10 @@ Docker Login: Use the docker login command with your ACR's login server URL and 
 docker login myregistryluiscoco1974.azurecr.io -u <username> -p <password>
 ```
 
+```
+docker login myregistryluiscoco1974.azurecr.io -u myregistryluiscoco1974 -p m+QYxC4Y6xCJWTLI/huNzIjOvhM65xlVBWzihklezR+ACRDK1LbO
+```
+
 Replace <username> and <password> with the credentials from the previous step.
 
 
