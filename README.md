@@ -234,6 +234,8 @@ az aks get-credentials --resource-group myRG --name myAKSClusterluiscoco1974
 
 Replace and with your AKS resource group name and AKS cluster name, respectively.
 
+![image](https://github.com/luiscoco/SpringBoot_Sample5-deploy-WebAPI-to-Azure_Kubernetes_AKS/assets/32194879/412e59f1-fbc8-473e-be97-490d01f139f0)
+
 Create a Kubernetes Secret for ACR authentication: This step is crucial for allowing your AKS cluster to pull images from your private Azure Container Registry.
 
 ```
