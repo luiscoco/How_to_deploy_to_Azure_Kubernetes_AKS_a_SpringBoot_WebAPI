@@ -84,7 +84,30 @@ Set as ACR Admin User
 
 ![image](https://github.com/luiscoco/SpringBoot_Sample5-deploy-WebAPI-to-Azure_Kubernetes_AKS/assets/32194879/1b7ee990-9b1f-4c4d-9a7d-bc2cdbb50422)
 
-## 6. Create Service-Principal
+## 6. Create a Docker image and run it
+
+Execute the following command to build the Docker image:
+
+```
+docker build -t springbootapi:latest .
+```
+
+Tag the Image for Azure Container Registry (ACR). Once the image is built, you'll need to tag it with the Azure Container Registry's address.
+
+Assume your ACR login server is myregistryluiscoco1974.azurecr.io, type this command:
+
+```
+docker tag springbootapi:latest myregistryluiscoco1974.azurecr.io/springbootapi:latest
+```
+
+Run the Docker container, to start a container from your image, use the docker run command:
+
+```
+docker run -p 8080:8080 myregistryluiscoco1974.azurecr.io/springbootapi:latest
+```
+
+
+## 7. Create Service-Principal
 
 ```
 az ad sp create-for-rbac --name luis-service-principal-name ^
