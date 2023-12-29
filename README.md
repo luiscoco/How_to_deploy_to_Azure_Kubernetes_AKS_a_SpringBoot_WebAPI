@@ -110,8 +110,33 @@ docker run -p 8080:8080 myregistryluiscoco1974.azurecr.io/springbootapi:latest
 
 ### 7.1. Using Azure CLI
 
+Install Azure CLI: Make sure you have the Azure CLI installed on your machine.
 
+Log in to Azure: Open a terminal or command prompt and log in to your Azure account:
 
+```
+az login
+```
+
+Follow the instructions to complete the login process.
+
+Get ACR Login Server Name: Retrieve your ACR's login server name. Replace myregistryluiscoco1974 with your actual ACR name.
+
+```
+az acr show --name myregistryluiscoco1974 --query loginServer --output table
+```
+
+It will return something like myregistryluiscoco1974.azurecr.io.
+
+Login to ACR: Use the Azure CLI to log in to your ACR. 
+
+This command automatically uses the credentials stored from your Azure login to authenticate with ACR.
+
+```
+az acr login --name myregistryluiscoco1974
+```
+
+This command will handle the authentication with Docker for you.
 
 ### 7.2. Using Docker Login Command
 
