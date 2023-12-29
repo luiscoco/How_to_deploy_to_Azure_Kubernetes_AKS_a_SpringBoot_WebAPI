@@ -197,57 +197,7 @@ eafe6e032dbd: Pushed
 latest: digest: sha256:bbc1283153d8ab75f0521d4bff7b23a5e4d03feb5296ce703e097fcaa45952c6 size: 1372
 ```
 
-## 9. Create Service-Principal
-
-```
-az ad sp create-for-rbac --name luis-service-principal-name ^
-    --scopes /subscriptions/subscriptionID/resourceGroups/myRG/providers/Microsoft.ContainerRegistry/registries/myregistryluiscoco1974 ^
-    --role acrpull ^
-    --query "password" ^
-    --output tsv
-```
-
-**SecretValue**:aCD8Q~C2-.bwoCJV8Ibx1YwwKhf~9S3FBAOZxaii
-
-## 7. Get the ApplicationID
-
-```
-az ad sp list --display-name luis-service-principal-name --query "[].appId" --output tsv
-```
-
-**ApplicationID**:70566a6a-4ba8-4b63-9f6e-397946754599
-
-## 8. Login in Azure Container Registry ACR with this command
-
-```
-az acr login --name myregistryluiscoco1974
-```
-
-```
-docker login myregistryluiscoco1974.azurecr.io -u ApplicationID -p SecretValue
-```
-
-```
-docker build -t myregistryluiscoco1974.azurecr.io/mywebapi:v1 .
-```
-
-## 9. Push the Docker image to Azure ACR
-
-```
-docker push myregistryluiscoco1974.azurecr.io/mywebapi:v1
-```
-
-## 10. 
-
-az login
-
-az role assignment create --assignee ApplicationID --role Contributor --scope /subscriptions/subscriptionID/resourceGroups/myRG/providers/Microsoft.ContainerRegistry/registries/myregistryluiscoco1974
-
-Also do not forget to Set the Admin user in the Azure Container Registry ACR
-
-![image](https://github.com/luiscoco/SpringBoot_Sample5-deploy-WebAPI-to-Azure_Kubernetes_AKS/assets/32194879/aba0d89a-a34b-4f46-9aaa-983bda3ccd0d)
-
-## 10. Create a new Azure Kubernetes Cluster AKS
+## 9. Create a new Azure Kubernetes Cluster AKS
 
 ```
 az aks create --resource-group myRG --name myAKSClusterluiscoco1974 --node-count 1 --enable-addons monitoring --generate-ssh-keys
@@ -258,7 +208,7 @@ Connect to Azure Kubernetes Cluster
 az aks get-credentials --resource-group myRG --name myAKSClusterluiscoco1974
 ```
 
-## 11. Deploy the docker image stored in ACR to Azure AKS
+## 10. Deploy the docker image stored in ACR to Azure AKS
 
 ```
 kubectl apply -f deployment.yml
@@ -266,6 +216,12 @@ kubectl apply -f deployment.yml
 
 ```
 kubectl apply -f service.yml
+```
+
+To get all the Kubernetes resource type the command:
+
+```
+kubectl get all
 ```
 
 Verify the Deployment. To ensure your deployment is running, use:
@@ -284,12 +240,6 @@ To see the LoadBalancer IP address run this command:
 
 ```
 kubectl get services
-```
-
-To get all the Kubernetes resource type the command:
-
-```
-kubectl get all
 ```
 
 **IMPORTANT NOTE**: see this repo for creating the Docker image (**DockerFile**) and Kubernetes manifest files (**deployment.yml** and **service.yml**): 
