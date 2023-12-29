@@ -1,5 +1,9 @@
 # How to deploy SpringBoot WebAPI to Azure Kubernetes(AKS)
 
+**IMPORTANT NOTE**: see this repo for creating the Docker image (**DockerFile**) and Kubernetes manifest files (**deployment.yml** and **service.yml**): 
+
+https://github.com/luiscoco/SpringBoot_Sample4-Deploy-WebAPI-to-LocalKubernetes
+
 ## 1. Create the SpringBoot WebAPI with VSCode
 
 https://github.com/luiscoco/SpringBoot_Sample2-created-WebAPI-with-VSCode
@@ -250,13 +254,31 @@ kubectl apply -f deployment.yml
 kubectl apply -f service.yml
 ```
 
-## 12. 
-
-To get all the Kubernetes resource type the command:
+## 12. Verify the Kubernetes deployment
 
 ```
 kubectl get all
 ```
+
+This is the output:
+
+```
+PS C:\SpringBoot WebAPI> kubectl get all
+NAME                                    READY   STATUS    RESTARTS   AGE
+pod/demoapi-deployment-65c6d7bd-rt7sx   1/1     Running   0          21s
+
+NAME                      TYPE           CLUSTER-IP    EXTERNAL-IP    PORT(S)        AGE
+service/demoapi-service   LoadBalancer   10.0.112.84   20.76.78.188   80:31638/TCP   14s
+service/kubernetes        ClusterIP      10.0.0.1      <none>         443/TCP        7m46s
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/demoapi-deployment   1/1     1            1           21s
+
+NAME                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/demoapi-deployment-65c6d7bd   1         1         1       21s
+```
+
+![image](https://github.com/luiscoco/SpringBoot_Sample5-deploy-WebAPI-to-Azure_Kubernetes_AKS/assets/32194879/5f4ff183-3031-476c-9b5d-d90cf07d962b)
 
 Verify the Deployment. To ensure your deployment is running, use:
 
@@ -276,6 +298,4 @@ To see the LoadBalancer IP address run this command:
 kubectl get services
 ```
 
-**IMPORTANT NOTE**: see this repo for creating the Docker image (**DockerFile**) and Kubernetes manifest files (**deployment.yml** and **service.yml**): 
 
-https://github.com/luiscoco/SpringBoot_Sample4-Deploy-WebAPI-to-LocalKubernetes
