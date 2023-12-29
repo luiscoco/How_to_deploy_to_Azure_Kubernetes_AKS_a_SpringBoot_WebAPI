@@ -48,7 +48,7 @@ spec:
     spec:
       containers:
         - name: demoapi
-          image: myregistryluiscoco1974.azurecr.io/mywebapi:v1  # Replace with your Docker image, e.g., "username/demoapi:latest"
+          image: myregistryluiscoco1974.azurecr.io/springbootapi:latest  # Replace with your Docker image, e.g., "username/demoapi:latest"
           ports:
             - containerPort: 8080
 ```
