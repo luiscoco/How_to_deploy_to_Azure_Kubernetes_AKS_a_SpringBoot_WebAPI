@@ -200,15 +200,47 @@ latest: digest: sha256:bbc1283153d8ab75f0521d4bff7b23a5e4d03feb5296ce703e097fcaa
 ## 9. Create a new Azure Kubernetes Cluster AKS
 
 ```
-az aks create --resource-group myRG --name myAKSClusterluiscoco1974 --node-count 1 --enable-addons monitoring --generate-ssh-keys
+az aks create ^
+--resource-group myRG ^
+--name myAKSClusterluiscoco1974 ^
+--node-count 1 ^
+--enable-addons monitoring ^
+--generate-ssh-keys ^
+--attach-acr myregistryluiscoco1974 ^
+--location westeurope
 ```
 
-Connect to Azure Kubernetes Cluster
+## 10. How to deploy.NET 8 WebAPI Docker image deploy to Azure AKS
+
+Authenticate with Azure: Make sure you are logged in to Azure CLI and have access to the subscription and resources.
+
+```
+az login
+```
+
+Set the context to your AKS cluster: You need to get credentials for your AKS cluster and set the current context of kubectl to your cluster.
+
+```
+az aks get-credentials --resource-group <YourResourceGroup> --name <YourAKSClusterName>
+```
+
 ```
 az aks get-credentials --resource-group myRG --name myAKSClusterluiscoco1974
 ```
 
-## 10. Deploy the docker image stored in ACR to Azure AKS
+Replace and with your AKS resource group name and AKS cluster name, respectively.
+
+Create a Kubernetes Secret for ACR authentication: This step is crucial for allowing your AKS cluster to pull images from your private Azure Container Registry.
+
+```
+az aks update -n <YourAKSClusterName> -g <YourResourceGroup> --attach-acr <YourACRName>
+```
+
+```
+az aks update -n myAKSClusterluiscoco1974 -g myRG --attach-acr myregistryluiscoco1974
+```
+
+## 11. Deploy the docker image stored in ACR to Azure AKS
 
 ```
 kubectl apply -f deployment.yml
@@ -217,6 +249,8 @@ kubectl apply -f deployment.yml
 ```
 kubectl apply -f service.yml
 ```
+
+## 12. 
 
 To get all the Kubernetes resource type the command:
 
