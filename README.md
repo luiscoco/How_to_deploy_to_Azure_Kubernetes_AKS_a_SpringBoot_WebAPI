@@ -106,8 +106,52 @@ Run the Docker container, to start a container from your image, use the docker r
 docker run -p 8080:8080 myregistryluiscoco1974.azurecr.io/springbootapi:latest
 ```
 
+## 7. Log in to an Azure Container Registry (ACR) using Docker
 
-## 7. Create Service-Principal
+### 7.1. Using Azure CLI
+
+
+
+
+### 7.2. Using Docker Login Command
+
+Get ACR Credentials: First, retrieve your ACR's username and password. Replace myregistryluiscoco1974 with your actual ACR name.
+
+```
+az acr credential show --name myregistryluiscoco1974
+```
+
+Note the username and one of the passwords from the output:
+
+```
+PS C:\SpringBoot WebAPI> az acr credential show --name myregistryluiscoco1974
+{
+  "passwords": [
+    {
+      "name": "password",
+      "value": "m+QYxC4Y6xCJWTLI/huNzIjOvhM65xlVBWzihklezR+ACRDK1LbO"
+    },
+    {
+      "name": "password2",
+      "value": "PgT2yZrhXD5fKHKi/RCYwB9F9y8vF70Ttpxvn2yi/d+ACRCB+AYZ"
+    }
+  ],
+  "username": "myregistryluiscoco1974"
+}
+```
+
+Docker Login: Use the docker login command with your ACR's login server URL and the credentials you just retrieved.
+
+```
+docker login myregistryluiscoco1974.azurecr.io -u <username> -p <password>
+```
+
+Replace <username> and <password> with the credentials from the previous step.
+
+
+
+
+## 8. Create Service-Principal
 
 ```
 az ad sp create-for-rbac --name luis-service-principal-name ^
